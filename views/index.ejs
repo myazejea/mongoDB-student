@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+ <head>
+     <link href="/assets/styles.css" rel="stylesheet" type="text/css" />
+       <% include partials/nav.ejs %>
+  </head>
+  <body>
+    <h1>Home page!</h1>
+    <h1>Student Infomation</h1>
+
+      <form id="index-form" method="POST" action="/">
+        <input type="text" placeholder="First name" name="firstname" value="<%= qs.person %>" ><br>
+        <input type="text" placeholder="Last name" name="lastname" value="<%= qs.person %>" ><br>
+        <input type="text" placeholder="Degree" name="department" value="<%= qs.dept %>" ><br>
+        <input type="text" placeholder="Program" name="program" >
+        <input type="submit" value="submit" <p>The Post Count <%= count %></p>
+        <a href="/views/studentForm">Posted on mongodb</a>
+      </form>
+
+    </body>
+</html>

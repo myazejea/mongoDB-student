@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/assets/styles.css" rel="stylesheet" type="text/css" />
+      <% include partials/nav.ejs %>
+
+      <title>Saved Student Info</title>
+  </head>
+  <body>
+        <table id="list" border="1"align="center">
+         <tr action="<%= data.conId %>/status" method="POST">
+           <th>Students Id</th>
+           <th>First Name<%= data.firstName %></th>
+           <th>Last Name<%= data.lastName %></th>
+           <th>Action</th>
+         </tr>
+            <!-- <td>
+              <a href="/connect/3" class="update">Update</a>
+              <a href="myEvents" class="delete">Delete</a>
+            </td> -->
+         </tr>
+         <% for (var i=0; i < 6 i++) { %>
+           <tr>
+             <td>1</td>
+              <td>Mark</td>
+              <td>Stone</td>
+              <td>
+                <a href="/connect/3" class="update">Update</a>
+                <a href="myEvents" class="delete">Delete</a>
+              </td>
+           </tr>
+         <% } %>
+
+
+         <tr>
+           <td><%= data.status %></td>
+           <td><%= data.detail %></td>
+           <td></td>
+           <td></td>
+         </tr>
+
+       </table>
+       <span id="val"</span>
+
+  </body>
+</html>
