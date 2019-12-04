@@ -6,7 +6,7 @@ var mongodb = require('mongodb');
 var mocha = require('mocha');
 var assert = require('assert');
 var path = require('path');
-var dbConn = mongodb.MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true });
+var dbConn = mongodb.MongoClient.connect('mongodb://localhost:27017/student/studentinfos', { useUnifiedTopology: true });
 var count = 0;
 var app = express();
 var StudentInfo = require('./models/studentInfo');
@@ -28,14 +28,22 @@ app.post('/', urlencodedParser, function(req, res){
   console.log(req.body)
   var stud = new StudentInfo({
     firstName: req.body.firstname,
-    lastName: req.body.lastname
+    lastName: req.body.lastname,
+    degree: req.body.degree,
+    program: req.body.program
   });
-  stud.save().then(function(){
-    assert(stud.isNew === false);
+  stud.save(function(data){
+    //assert(data.isNew === false);
+    console.log("in save")
   });
   count++;
-  res.render('index-success', {data: req.query});
+  //select all students from database
+  //render that list of students to savedStudents views
+  StudentInfo.find({}).then(function(result){
+    res.render('savedStudents',{data:result})
+  });
 });
+//  res.render('index-success', {data: req.query});
 //Get home page
 app.post('/views/index-success', function(req, res){
   dbConn.then(function(db){
@@ -71,10 +79,6 @@ app.use(function(req, res, next){
   next();
 });
 
-app.get('/', (req, res, next) => {
-    res.sendStatus(200);
-    next();
-});
 
 app.listen(process.env.port || 4000, function(){
   console.log('app started!');

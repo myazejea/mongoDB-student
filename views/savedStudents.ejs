@@ -8,31 +8,45 @@
   </head>
   <body>
         <table id="list" border="1"align="center">
-         <tr action="<%= data.conId %>/status" method="POST">
-           <th>Students Id</th>
-           <th>First Name<%= data.firstName %></th>
-           <th>Last Name<%= data.lastName %></th>
-           <th>Action</th>
-         </tr>
-            <!-- <td>
+           <tr action="<%= data.conId %>/status" method="POST">
+               <th>Students Id</th>
+               <th>First Name </th>
+               <th>Last Name</th>
+               <th>Degree</th>
+               <th>Program</th>
+               <th>Action</th>
+             </tr>
+
+          <% for (var i =0; i< data.length; i++){ %>
+            <tr>
+              <td> </td>
+            <td> <%= data[i].firstName %> </td>
+            <td> <%= data[i].lastName %> </td>
+            <td> <%= data[i].degree %> </td>
+            <td> <%= data[i].program %> </td>
+            <td><a href="/connect/3" class="update">Update</a></td>
+            <td><a href="myEvents" class="delete">Delete</a></td>
+            <td> </td>
+          </tr>
+            <%}%>
+
+            <td>
               <a href="/connect/3" class="update">Update</a>
               <a href="myEvents" class="delete">Delete</a>
-            </td> -->
-         </tr>
-         <% for (var i=0; i < 6 i++) { %>
-           <tr>
+            </td>
+
+            <tr>
              <td>1</td>
-              <td>Mark</td>
-              <td>Stone</td>
-              <td>
+             <td>Mark</td>
+             <td>Stone</td>
+             <td>
                 <a href="/connect/3" class="update">Update</a>
                 <a href="myEvents" class="delete">Delete</a>
               </td>
            </tr>
-         <% } %>
 
 
-         <tr>
+        <tr>
            <td><%= data.status %></td>
            <td><%= data.detail %></td>
            <td></td>
